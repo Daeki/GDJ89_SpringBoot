@@ -8,5 +8,6 @@
 </head>
 <body>
 	<h1>Home Gradle</h1>
+	<img alt="" src="/images/c3.jpg">
 </body>
 </html>
