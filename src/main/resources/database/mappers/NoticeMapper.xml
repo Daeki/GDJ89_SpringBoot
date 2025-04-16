@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <!-- windows -> preferences -> XML(Wild Web Developer) 
+  	   -> Download exter... check 후 저장 
+   -->
+  
+  
+  <mapper namespace="com.winter.app.board.notice.NoticeDAO">
+  
+  	<select id="getList" resultType="NoticeVO">
+  		SELECT * FROM NOTICE_TBL 
+  		
+  	</select>
+  	
+  </mapper>
