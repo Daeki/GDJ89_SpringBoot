@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.winter.app.board.BoardVO;
+import com.winter.app.home.util.Pager;
 
 @Controller
 @RequestMapping("/notice/*")
@@ -28,9 +29,9 @@ public class NoticeController {
 	}
 	
 	@GetMapping("list")
-	public String getList(Model model)throws Exception{
+	public String getList(Pager pager, Model model)throws Exception{
 		
-		List<BoardVO> ar = noticeService.getList();
+		List<BoardVO> ar = noticeService.getList(pager);
 		model.addAttribute("list", ar);
 		
 		return "board/list";

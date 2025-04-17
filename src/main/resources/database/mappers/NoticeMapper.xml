@@ -10,9 +10,26 @@
   
   <mapper namespace="com.winter.app.board.notice.NoticeDAO">
   
-  	<select id="getList" resultType="NoticeVO">
-  		SELECT * FROM NOTICE_TBL 
+  	<select id="getList" resultType="NoticeVO" parameterType="Pager">
+  		SELECT * FROM NOTICE_TBL
+  		ORDER BY BOARD_NUM DESC
+  		LIMIT #{startNum} , #{perPage}
   		
   	</select>
+  	
+  	<insert id="test" parameterType="java.util.List">
+  		<!-- 다중 insert -->
+  		
+  		INSERT 
+  		INTO NOTICE_TBL 
+  		(BOARD_TITLE, BOARD_CONTENTS, BOARD_DATE, BOARD_HIT, USER_NAME)
+  		VALUES 
+  		<foreach collection="list" item="item" open="" separator="," close="">
+  		(#{item.boardTitle}, #{item.boardContents}, NOW(), 0, #{item.userName})
+  		</foreach>
+  		
+  		
+  	</insert>
+  	
   	
   </mapper>
