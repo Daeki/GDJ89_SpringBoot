@@ -27,19 +27,20 @@
 						</div>
 						<div class="card-body">
 						
+							 <form method="get" >
 							<div class="col-md-3 input-group mb-3">
-							 
-							    <select class="form-control col-3" id="exampleFormControlSelect1">
-							      <option>제목</option>
-							      <option>작성자</option>
-							      <option>내용</option>
+							    <select name="kind" class="form-control col-3" id="exampleFormControlSelect1">
+							      <option value="k1">제목</option>
+							      <option value="k3">작성자</option>
+							      <option value="k2">내용</option>
 							    </select>
 							 
-							  <input type="text" class="form-control col-6" aria-label="Recipient's username" aria-describedby="button-addon2">
+							  <input type="text" name="search" class="form-control col-6" aria-label="Recipient's username" aria-describedby="button-addon2">
 							  <div class="input-group-append">
-							    <button class="btn btn-secondary" type="button" id="button-addon2">찾기</button>
+							    <button class="btn btn-secondary" type="submit" id="button-addon2">찾기</button>
 							  </div>
 							</div>
+							  </form>
 						
 							<div class="table-responsive">
 								<table class="table table-bordered" id="dataTable" width="100%"
@@ -57,7 +58,7 @@
 										<c:forEach items="${list}" var="vo">
 											<tr>
 												<td>${vo.boardNum}</td>
-												<td>${vo.boardTitle}</td>
+												<td><a href="detail?boardNum=${vo.boardNum}"> ${vo.boardTitle}</a></td>
 												<td>${vo.userName}</td>
 												<td>${vo.boardDate}</td>
 												<td>${vo.boardHit}</td>
@@ -67,25 +68,29 @@
 									</tbody>
 								</table>
 							</div>
-							<nav aria-label="Page navigation example">
+							<div class="row justify-content-between">
+							<nav aria-label="Page navigation example col-md-6">
 							  <ul class="pagination">
 							    <li class="page-item">
-							      <a class="page-link" href="#" aria-label="Previous">
+							      <a class="page-link" href="./list?page=${pager.start-1}&kind=${pager.kind}&search=${pager.search}" aria-label="Previous">
 							        <span aria-hidden="true">&laquo;</span>
 							      </a>
 							    </li>
-							    <li class="page-item"><a class="page-link" href="#">1</a></li>
-							    <li class="page-item"><a class="page-link" href="#">2</a></li>
-							    <li class="page-item"><a class="page-link" href="#">3</a></li>
+							    <c:forEach begin="${pager.start}" end="${pager.end}" var="i">
+							    <li class="page-item"><a class="page-link" href="./list?page=${i}&kind=${pager.kind}&search=${pager.search}">${i}</a></li>
+							    </c:forEach>
 							    <li class="page-item">
-							      <a class="page-link" href="#" aria-label="Next">
+							      <a class="page-link" href="./list?page=${pager.next?pager.end+1:pager.end}&kind=${pager.kind}&search=${pager.search}" aria-label="Next">
 							        <span aria-hidden="true">&raquo;</span>
 							      </a>
 							    </li>
 							  </ul>
 							</nav>							
 							
-							
+							<div class="">
+								<a href="./add" class="btn btn-primary">글작성</a>
+							</div>
+						</div>	
 						</div>
 					</div>
 

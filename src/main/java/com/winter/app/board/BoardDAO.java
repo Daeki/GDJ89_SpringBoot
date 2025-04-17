@@ -6,6 +6,8 @@ import com.winter.app.home.util.Pager;
 
 public interface BoardDAO {
 	
+	public Long getTotalCount(Pager pager)throws Exception;
+	
 	public List<BoardVO> getList(Pager pager)throws Exception;
 	
 	public BoardVO getDetail(BoardVO boardVO)throws Exception;

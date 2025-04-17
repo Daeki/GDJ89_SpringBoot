@@ -9,13 +9,50 @@
   
   
   <mapper namespace="com.winter.app.board.notice.NoticeDAO">
+  	<sql id="search">
+  		WHERE
+  			<choose>
+  				<when test="kind == 'k1'">
+  					BOARD_TITLE
+  				</when>
+  				
+  				<when test="kind=='k2'">
+  					BOARD_CONTENTS
+  				</when>
+  				<otherwise>
+  					USER_NAME
+  				</otherwise>
+  			</choose>
+  			LIKE CONCAT('%', #{search} , '%')
+  	</sql>
+  
+  	<select id="getTotalCount" resultType="Long" parameterType="Pager">
+  		SELECT COUNT(BOARD_NUM) FROM NOTICE_TBL
+  		<include refid="search"></include>
+  	</select>
   
   	<select id="getList" resultType="NoticeVO" parameterType="Pager">
   		SELECT * FROM NOTICE_TBL
+  		
+  		<include refid="search"></include>
+  		
   		ORDER BY BOARD_NUM DESC
   		LIMIT #{startNum} , #{perPage}
   		
   	</select>
+  	
+  	<select id="getDetail" parameterType="BoardVO" resultType="NoticeVO">
+  		SELECT * FROM NOTICE_TBL
+  		WHERE BOARD_NUM=#{boardNum}
+  	</select>
+  	
+  	<insert id="add" parameterType="BoardVO">
+  		INSERT INTO NOTICE_TBL 
+  		(BOARD_TITLE, BOARD_CONTENTS, BOARD_DATE, BOARD_HIT, USER_NAME)
+  		VALUES
+  		(#{boardTitle}, #{boardContents}, NOW(), 0, #{userName})
+  	</insert>
+  	
   	
   	<insert id="test" parameterType="java.util.List">
   		<!-- 다중 insert -->

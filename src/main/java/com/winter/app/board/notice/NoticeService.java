@@ -18,6 +18,7 @@ public class NoticeService implements BoardService{
 	@Override
 	public List<BoardVO> getList(Pager pager) throws Exception {
 		// TODO Auto-generated method stub
+		pager.make(noticeDAO.getTotalCount(pager));
 		pager.makeNum();
 		List<BoardVO> ar = noticeDAO.getList(pager); 
 		return ar;
@@ -26,13 +27,13 @@ public class NoticeService implements BoardService{
 	@Override
 	public BoardVO getDetail(BoardVO boardVO) throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+		return noticeDAO.getDetail(boardVO);
 	}
 
 	@Override
 	public int add(BoardVO boardVO) throws Exception {
 		// TODO Auto-generated method stub
-		return 0;
+		return noticeDAO.add(boardVO);
 	}
 	
 	
