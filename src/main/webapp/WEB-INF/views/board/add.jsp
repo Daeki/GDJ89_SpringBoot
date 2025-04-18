@@ -26,7 +26,7 @@
 							</h6>
 						</div>
 						<div class="card-body">
-						<form method="post">
+						<form method="post" enctype="multipart/form-data">
 						  <div class="form-group">
 						    <label for="user">User</label>
 						    <input type="text" name="userName" class="form-control" id="user" >
@@ -40,6 +40,13 @@
 						    <label for="contents">Contents</label>
 						    <textarea name="boardContents" class="form-control" id="contents" rows="6"></textarea>
 						  </div>
+						  
+						  <div>
+						  	<input type="file" name="attaches"><br>
+						  	<input type="file" name="attaches"><br>
+						  	<input type="file" name="attaches"><br>
+						  </div>
+						  
 						  <button type="submit" class="btn btn-primary">Submit</button>
 						</form>
 						</div>

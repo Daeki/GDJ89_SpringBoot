@@ -10,10 +10,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.winter.app.board.BoardFileVO;
 import com.winter.app.board.BoardVO;
 import com.winter.app.home.util.Pager;
 
+import lombok.extern.slf4j.Slf4j;
+@Slf4j
 @Controller
 @RequestMapping("/notice/*")
 public class NoticeController {
@@ -58,11 +63,21 @@ public class NoticeController {
 	}
 	
 	@PostMapping("add")
-	public String add(NoticeVO noticeVO)throws Exception{
-		int result = noticeService.add(noticeVO);
+	public String add(NoticeVO noticeVO,@RequestParam(name = "attaches") MultipartFile[] attaches)throws Exception{
+		int result = noticeService.add(noticeVO, attaches);
 		
+	
 		
 		return "redirect:./list";
+	}
+	
+	@GetMapping("fileDown")
+	public String getFileDetail(BoardFileVO boardFileVO, Model model)throws Exception{
+		boardFileVO = noticeService.getFileDetail(boardFileVO);
+		
+		model.addAttribute("fileVO", boardFileVO);
+		
+		return "fileDownView";
 	}
 
 }
