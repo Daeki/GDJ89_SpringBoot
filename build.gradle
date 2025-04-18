@@ -30,8 +30,8 @@ dependencies {
 	testImplementation 'org.springframework.security:spring-security-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 	// https://mvnrepository.com/artifact/org.apache.tomcat.embed/tomcat-embed-jasper
-	//providedRuntime 'org.apache.tomcat.embed:tomcat-embed-jasper'
-	// https://mvnrepository.com/artifact/org.glassfish.web/jakarta.servlet.jsp.jstl
+	providedRuntime 'org.apache.tomcat.embed:tomcat-embed-jasper'
+	//https://mvnrepository.com/artifact/org.glassfish.web/jakarta.servlet.jsp.jstl
 	implementation 'org.glassfish.web:jakarta.servlet.jsp.jstl'
 	implementation 'jakarta.servlet:jakarta.servlet-api' //스프링부트 3.0 이상
     implementation 'jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api' //스프링부트 3.0 이상
